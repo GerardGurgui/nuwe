@@ -1,0 +1,31 @@
+public static boolean validarTicket(String enteredCode, String correctCode, String currentDate, String expirationDate){
+        
+        boolean valido = false;
+        
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        LocalDate fechaActual = LocalDate.parse(currentDate, format);
+        LocalDate fechaLimite = LocalDate.parse(expirationDate, format);
+        
+        
+         if (enteredCode.equals(correctCode)) {
+             
+             if (fechaActual.equals(fechaLimite)) {
+                 
+                 valido = true;
+                 
+             }else if(fechaActual.isBefore(fechaLimite)){
+                 
+                 valido = true;
+                 
+             }else if (fechaActual.isAfter(fechaLimite)) {
+                 
+                 valido = false;
+                 
+             }
+            
+        }
+        
+         return valido;
+        
+    }
